@@ -29,16 +29,24 @@ const setAdminRole = async (userName) => {
     // perform param checks here
     try {
         const database = await connectToDatabase();
+        // assuming that if database connection fails, connectToDatabase() will throw an error and will be catched in the catch block
+        
         const user = await getUser(database, userName);
+        if (!user || !user?.id) {
+            throw new Error("User not found");
+        }
+
         // Assuming that user role field is accesible as an object property
         if (user && user?.role === "ADMIN") {
-            return "User is already an admin";
+            throw new Error("User is already an admin");
         }
+
         const setToAdmin = await setRole(database, user?.id, "ADMIN");
-        if (setToAdmin === "success") {
-            await notifyUser(user?.id, "USER_ROLE_UPDATED");
-            await notifyAdmins("USER_ROLE_UPDATED");
+        if (setToAdmin !== "success") {
+            throw new Error("User role could not be updated");
         }
+        await notifyUser(user?.id, "USER_ROLE_UPDATED");
+        await notifyAdmins("USER_ROLE_UPDATED");
         return setToAdmin;
     } catch (error) {
         console.log(error);
