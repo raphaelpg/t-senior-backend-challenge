@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
 import { TransactionsModule } from '../transactions/transactions.module';
-import { Transaction } from '../transactions/transactions.entity';
 
 @Module({
   imports: [
@@ -13,10 +12,8 @@ import { Transaction } from '../transactions/transactions.entity';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [
-        Transaction
-      ],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     TransactionsModule
   ],
