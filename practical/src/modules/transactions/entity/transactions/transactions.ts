@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('dai_transactions')
-export class DaiTransactions {
+@Entity('transactions')
+export class Transactions {
   @PrimaryGeneratedColumn()
   id: number;
 

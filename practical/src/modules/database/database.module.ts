@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
-import { DaiTransactionsModule } from '../dai-transactions/dai-transactions.module';
-import { DaiTransactions } from '../dai-transactions/entity/dai-transactions/dai-transactions';
+import { TransactionsModule } from '../transactions/transactions.module';
+import { Transactions } from '../transactions/entity/transactions/transactions';
 
 @Module({
   imports: [
@@ -14,17 +14,13 @@ import { DaiTransactions } from '../dai-transactions/entity/dai-transactions/dai
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       entities: [
-        DaiTransactions
+        Transactions
       ],
       synchronize: true,
     }),
-    DaiTransactionsModule
+    TransactionsModule
   ],
 })
 export class DatabaseModule {
-  constructor() {
-    console.log('connect to MySQL database');
-    console.log('create DAI txs table');
-    console.log('create API keys table');
-  }
+  constructor() {}
 }
