@@ -9,7 +9,7 @@ export class Transaction {
   hash: string;
 
   @Column()
-  blockNumber: number;
+  blockNumber: string;
 
   @Column()
   sender: string;
@@ -18,8 +18,8 @@ export class Transaction {
   recipient: string;
 
   @Column()
-  amount: number;
+  amount: string;
 
   @Column()
-  timestamp: number;
+  timestamp: string;
 }

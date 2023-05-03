@@ -20,11 +20,5 @@ import { DatabaseService } from './modules/database/database.service';
 export class AppModule implements OnModuleInit {
   constructor(private readonly appService: AppService) {}
 
-  onModuleInit() {
-    let databaseService = new DatabaseService();
-    let ethereumService = new EthereumService(databaseService);
-    ethereumService.blockSubscriber([
-      ethereumService.parseBlockForDaiTransfers
-    ]);
-  }
+  onModuleInit() {}
 }

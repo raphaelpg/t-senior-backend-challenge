@@ -11,11 +11,11 @@ export class TransactionsService {
     private dataSource: DataSource, 
   ) {}
 
-  save(transaction: Transaction): Promise<Transaction> {
+  save = (transaction: any): Promise<Transaction> => {
     return this.usersRepository.save(transaction);
   }
 
-  async createMany(transactions: Transaction[]) {
+  createMany = async (transactions: any[]) => {
     const queryRunner = this.dataSource.createQueryRunner();
   
     await queryRunner.connect();
@@ -33,15 +33,15 @@ export class TransactionsService {
     }
   }
 
-  findAll(): Promise<Transaction[]> {
+  findAll = (): Promise<Transaction[]> => {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<Transaction | null> {
+  findOne = (id: number): Promise<Transaction | null> => {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async remove(id: number): Promise<void> {
+  remove = async (id: number): Promise<void> => {
     await this.usersRepository.delete(id);
   }
 }
