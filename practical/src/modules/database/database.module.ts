@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import 'dotenv/config';
 import { TransactionsModule } from '../transactions/transactions.module';
 
 @Module({

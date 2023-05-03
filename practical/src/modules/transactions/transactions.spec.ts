@@ -1,4 +1,4 @@
-import { Transaction } from './transactions.entity.js';
+import { Transaction } from "./transactions.entity";
 
 describe('Transactions', () => {
   it('should be defined', () => {
