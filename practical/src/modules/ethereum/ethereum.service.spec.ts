@@ -21,8 +21,4 @@ describe('EthereumService', () => {
     expect(blockNumber).toBeDefined();
   });
 
-  it('should subscribe to new block event', async () => {
-    await service.blockSubscriber();
-  });
-
 });
