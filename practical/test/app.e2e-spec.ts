@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { AppModule } from './../src/app.module';
 
 describe('AppController (e2e)', () => {
@@ -20,5 +20,17 @@ describe('AppController (e2e)', () => {
       .get('/')
       .expect(200)
       .expect('Hello World!');
+  });
+
+  it('/trasactions/last/1/30 (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/transactions/last/1/30')
+      .expect(200)
+  });
+
+  it('/trasactions/last/1 (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/transactions/last/1')
+      .expect(401) // Unauthorized
   });
 });

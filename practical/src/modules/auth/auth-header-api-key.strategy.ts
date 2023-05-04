@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import Strategy from 'passport-headerapikey';
+// import { mockApiKeys } from 'src/utils/mockData';
+import { mockApiKeys } from '../../utils/mockData';
 
 @Injectable()
 export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'api-key') {
@@ -14,7 +16,7 @@ export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'api-key') 
     }
 
     public validate = (apiKey: string, done: (error: Error, data) => {}) => {
-        if (process.env.API_KEY === apiKey) {
+        if (mockApiKeys.includes(apiKey)) {
             done(null, true);
         }
         done(new UnauthorizedException(), null);
