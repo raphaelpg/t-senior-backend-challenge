@@ -22,5 +22,11 @@ export class TransactionsController {
   getLastTransactionsWithPagination(@Param('page') page: number, @Param('limit') limit: number): Promise<Transaction[]> {
     return this.transactionService.findLastWithPagination(page, limit);
   }
+
+  // Get all transactions by address
+  @Get('address/:address')
+  getAllTransactionsByAddress(@Param('address') address: string): Promise<Transaction[]> {
+    return this.transactionService.findAllByAddress(address);
+  }
   
 }

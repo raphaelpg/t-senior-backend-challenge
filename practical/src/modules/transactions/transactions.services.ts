@@ -33,6 +33,10 @@ export class TransactionsService {
     }
   }
 
+  findOne = (id: number): Promise<Transaction | null> => {
+    return this.usersRepository.findOneBy({ id });
+  }
+
   findAll = (): Promise<Transaction[]> => {
     return this.usersRepository.find();
   }
@@ -48,8 +52,17 @@ export class TransactionsService {
     });
   }
 
-  findOne = (id: number): Promise<Transaction | null> => {
-    return this.usersRepository.findOneBy({ id });
+  // find all by sender or recipitent address
+  findAllByAddress = (address: string): Promise<Transaction[]> => {
+    return this.usersRepository.find({
+      where: [
+        { sender: address },
+        { recipient: address }
+      ],
+      order: {
+        id: "DESC"
+      }
+    });
   }
 
   remove = async (id: number): Promise<void> => {
