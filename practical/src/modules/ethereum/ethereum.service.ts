@@ -6,9 +6,10 @@ import { WEB3_PROVIDER_URL } from '../../utils/constants';
 export class EthereumService {
   constructor() {}
 
+  private provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
+
   blockSubscriber = async (callback: any[]) => {
-    const provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
-    provider.on('block', (blockNumber) => {
+    this.provider.on('block', (blockNumber) => {
       console.log('New block mined: ' + blockNumber);
       callback?.forEach((cb) => {
         cb(blockNumber);
@@ -17,14 +18,12 @@ export class EthereumService {
   }
   
   getBlockNumber = async () => {
-    const provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
-    const blockNumber = await provider.getBlockNumber();
+    const blockNumber = await this.provider.getBlockNumber();
     return blockNumber;
   }
 
   getBlockLogs = async (block: number) => {
-    const provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
-    const logs = await provider.getLogs({fromBlock: block, toBlock: block});
+    const logs = await this.provider.getLogs({fromBlock: block, toBlock: block});
     return logs;
   }
   
