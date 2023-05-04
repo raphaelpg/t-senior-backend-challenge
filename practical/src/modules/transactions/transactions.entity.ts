@@ -24,7 +24,7 @@ export class Transaction {
   decimals: number;
 
   @Column()
-  hash: string;
+  tx_hash: string;
 
   @Column()
   timestamp: string;

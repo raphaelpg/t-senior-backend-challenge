@@ -13,7 +13,7 @@ export class DatabaseService {
         recipient: log.to,
         amount: log.value,
         decimals: tokenDecimals,
-        hash: log.transactionHash,
+        tx_hash: log.transactionHash,
         timestamp: new Date().toUTCString(),
       };
       return formattedLog;
