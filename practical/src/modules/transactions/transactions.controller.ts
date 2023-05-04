@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { TransactionsService } from './transactions.services';
 import { Transaction } from './transactions.entity';
 
@@ -12,8 +12,15 @@ export class TransactionsController {
   }
 
   // Get last 100 transactions
-  @Get('last')
-  getLastTransactions(): Promise<Transaction[]> {
-    return this.transactionService.findAll();
+  @Get('last/:page')
+  getLastTransactions(@Param('page') page: number): Promise<Transaction[]> {
+    return this.transactionService.findLastWithPagination(page, 100);
   }
+
+  // Get last 100 transactions with pagination
+  @Get('last/:page/:limit')
+  getLastTransactionsWithPagination(@Param('page') page: number, @Param('limit') limit: number): Promise<Transaction[]> {
+    return this.transactionService.findLastWithPagination(page, limit);
+  }
+  
 }

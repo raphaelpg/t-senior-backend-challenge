@@ -37,6 +37,17 @@ export class TransactionsService {
     return this.usersRepository.find();
   }
 
+  // find last 100 transactions with pagination
+  findLastWithPagination = (page: number, limit: number): Promise<Transaction[]> => {
+    return this.usersRepository.find({
+      order: {
+        id: "DESC"
+      },
+      take: limit,
+      skip: (page - 1) * limit
+    });
+  }
+
   findOne = (id: number): Promise<Transaction | null> => {
     return this.usersRepository.findOneBy({ id });
   }
