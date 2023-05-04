@@ -1,16 +1,17 @@
 import { ethers } from 'ethers';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { WEB3_PROVIDER_URL } from '../../utils/constants';
 
 @Injectable()
 export class EthereumService {
   constructor() {}
 
+  private readonly logger = new Logger(EthereumService.name)
   private provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
 
   blockSubscriber = async (callback: any[]) => {
     this.provider.on('block', (blockNumber) => {
-      console.log('New block mined: ' + blockNumber);
+      this.logger.log('New block mined: ' + blockNumber);
       callback?.forEach((cb) => {
         cb(blockNumber);
       });

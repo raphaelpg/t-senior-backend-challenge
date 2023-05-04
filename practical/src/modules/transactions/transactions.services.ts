@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Transaction } from './transactions.entity';
@@ -10,6 +10,8 @@ export class TransactionsService {
     private usersRepository: Repository<Transaction>,
     private dataSource: DataSource, 
   ) {}
+
+  private readonly logger = new Logger(TransactionsService.name)
 
   save = (transaction: any): Promise<Transaction> => {
     return this.usersRepository.save(transaction);
@@ -29,6 +31,7 @@ export class TransactionsService {
     } catch (err) {
       await queryRunner.rollbackTransaction();
     } finally {
+      this.logger.log('Transactions saved to database: ' + transactions.length);
       await queryRunner.release();
     }
   }

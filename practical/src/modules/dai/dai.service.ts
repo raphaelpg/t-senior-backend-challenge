@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { TransactionsService } from '../transactions/transactions.services';
 import { EthereumService } from '../ethereum/ethereum.service';
@@ -13,6 +13,8 @@ export class DaiService {
     private readonly ethereumService: EthereumService
   ) {}
 
+  private readonly logger = new Logger(DaiService.name)
+
   parseBlockForDaiTransfers = async (blockNumber: number) => {
     let usedBlock = parseInt(blockNumber.toString());
 
@@ -25,11 +27,10 @@ export class DaiService {
       if (formattedLogs.length > 0) {
         this.transactionsService.createMany(formattedLogs);
       }
-      console.log('Dai transactions found:', formattedLogs.length)
+      this.logger.log('Dai transactions found: ' + formattedLogs.length)
       return daiLogs;
-
     } catch (error) {
-      console.log('error', error)
+      this.logger.error('Error parsing block for Dai transfers:', error)
     }
   }
 }
