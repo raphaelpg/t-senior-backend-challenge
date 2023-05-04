@@ -9,6 +9,7 @@ import { DatabaseService } from './modules/database/database.service';
 import { DaiModule } from './modules/dai/dai.module';
 import { DaiService } from './modules/dai/dai.service';
 import { AuthModule } from './modules/auth/auth.module';
+import { ThrottleModule } from './modules/throttle/throttle.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './modules/auth/auth.module';
     EthereumModule,
     DaiModule,
     AuthModule,
+    ThrottleModule,
   ],
   controllers: [AppController],
   providers: [
