@@ -6,19 +6,25 @@ export class Transaction {
   id: number;
 
   @Column()
-  hash: string;
-
-  @Column()
   blockNumber: string;
-
+  
+  @Column()
+  symbol: string;
+  
   @Column()
   sender: string;
-
+  
   @Column()
   recipient: string;
-
+  
   @Column()
   amount: string;
+  
+  @Column()
+  decimals: number;
+
+  @Column()
+  hash: string;
 
   @Column()
   timestamp: string;

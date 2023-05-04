@@ -4,15 +4,17 @@ import { Transaction } from '../transactions/transactions.entity';
 @Injectable()
 export class DatabaseService {
 
-  formatLogs = (logs: any[]) => {
+  formatLogs = (logs: any[], tokenName: string, tokenDecimals: number) => {
     return logs.map((log) => {
       let formattedLog = {
-        hash: log.transactionHash,
         blockNumber: log.blockNumber,
+        symbol: tokenName,
         sender: log.from,
         recipient: log.to,
         amount: log.value,
-        timestamp: new Date().toISOString(),
+        decimals: tokenDecimals,
+        hash: log.transactionHash,
+        timestamp: new Date().toUTCString(),
       };
       return formattedLog;
     }).map((log) => {
