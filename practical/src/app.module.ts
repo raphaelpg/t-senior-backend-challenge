@@ -21,7 +21,7 @@ import { DaiService } from './modules/dai/dai.service';
     AppService, 
     EthereumService, 
     DatabaseService, 
-    DaiService
+    DaiService,
   ],
 })
 

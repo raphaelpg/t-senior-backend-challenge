@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { TransactionsService } from './transactions.services';
 import { Transaction } from './transactions.entity';
 
@@ -32,6 +32,7 @@ export class TransactionsController {
   // Get address balance
   @Get('balance/:address')
   getAddressBalance(@Param('address') address: string): Promise<string> {
+    console.log("address: ", address)
     return this.transactionService.findTotalBalanceByAddress(address);
   }
   

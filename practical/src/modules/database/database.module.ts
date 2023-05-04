@@ -18,7 +18,9 @@ import { DatabaseService } from './database.service';
     }),
     TransactionsModule,
   ],
-  providers: [DatabaseService],
+  providers: [
+    DatabaseService,
+  ],
   exports: [DatabaseService],
 })
 export class DatabaseModule {
