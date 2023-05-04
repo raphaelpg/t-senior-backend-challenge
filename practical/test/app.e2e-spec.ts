@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { mockApiKeys } from '../src/utils/mockData';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -28,9 +29,24 @@ describe('AppController (e2e)', () => {
       .expect(200)
   });
 
-  it('/trasactions/last/1 (GET)', () => {
+  it('should not authorize request without api key (GET)', () => {
     return request(app.getHttpServer())
       .get('/transactions/last/1')
       .expect(401) // Unauthorized
   });
+
+  it('should not authorize request with invalid api key (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/transactions/last/1')
+      .set('apiKey', 'invalid')
+      .expect(401) // Unauthorized
+  });
+
+  it('should authorize request with api key (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/transactions/last/1')
+      .set('apiKey', mockApiKeys[0])
+      .expect(200)
+  });
+
 });

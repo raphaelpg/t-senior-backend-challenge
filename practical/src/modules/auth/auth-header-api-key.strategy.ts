@@ -6,7 +6,7 @@ import { mockApiKeys } from '../../utils/mockData';
 @Injectable()
 export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'api-key') {
     constructor() {
-        super({ header: 'CHALLENGE-API-KEY', prefix: '' },
+        super({ header: 'apiKey', prefix: '' },
         true,
         async (apiKey, done) => {
             return this.validate(apiKey, done);
