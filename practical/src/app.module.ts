@@ -8,6 +8,7 @@ import { EthereumService } from './modules/ethereum/ethereum.service';
 import { DatabaseService } from './modules/database/database.service';
 import { DaiModule } from './modules/dai/dai.module';
 import { DaiService } from './modules/dai/dai.service';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { DaiService } from './modules/dai/dai.service';
     TransactionsModule,
     EthereumModule,
     DaiModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { TransactionsService } from './transactions.services';
 import { Transaction } from './transactions.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('transactions')
 export class TransactionsController {
@@ -13,6 +14,7 @@ export class TransactionsController {
 
   // Get last 100 transactions
   @Get('last/:page')
+  @UseGuards(AuthGuard('api-key'))
   getLastTransactions(@Param('page') page: number): Promise<Transaction[]> {
     return this.transactionService.findLastWithPagination(page, 100);
   }
