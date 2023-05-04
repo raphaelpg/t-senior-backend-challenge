@@ -52,7 +52,7 @@ export class TransactionsService {
     });
   }
 
-  // find all by sender or recipitent address
+  // find all by sender or recipient address
   findAllByAddress = (address: string): Promise<Transaction[]> => {
     return this.usersRepository.find({
       where: [
@@ -63,6 +63,23 @@ export class TransactionsService {
         id: "DESC"
       }
     });
+  }
+  
+  // find address' total balance
+  findTotalBalanceByAddress = async (address: string): Promise<string> => {
+    const totalSent = await this.usersRepository.createQueryBuilder("transaction")
+      .select("SUM(transaction.amount)", "total")
+      .where("transaction.sender = :address", { address })
+      .getRawOne();
+    const bigSent = totalSent?.total !== null ? BigInt(totalSent?.total) : BigInt('0');
+    
+    const totalReceived = await this.usersRepository.createQueryBuilder("transaction")
+      .select("SUM(transaction.amount)", "total")
+      .where("transaction.recipient = :address", { address })
+      .getRawOne();
+    const bigReceived = totalReceived?.total !== null ? BigInt(totalReceived?.total) : BigInt('0');
+    
+    return (bigReceived - bigSent).toString();
   }
 
   remove = async (id: number): Promise<void> => {

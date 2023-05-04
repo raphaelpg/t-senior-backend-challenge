@@ -28,5 +28,11 @@ export class TransactionsController {
   getAllTransactionsByAddress(@Param('address') address: string): Promise<Transaction[]> {
     return this.transactionService.findAllByAddress(address);
   }
+
+  // Get address balance
+  @Get('balance/:address')
+  getAddressBalance(@Param('address') address: string): Promise<string> {
+    return this.transactionService.findTotalBalanceByAddress(address);
+  }
   
 }
