@@ -27,5 +27,8 @@ export class Transaction {
   tx_hash: string;
 
   @Column()
+  date: string;
+
+  @Column()
   timestamp: string;
 }

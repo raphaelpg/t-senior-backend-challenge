@@ -25,7 +25,7 @@ export class DaiService {
       if (formattedLogs.length > 0) {
         this.transactionsService.createMany(formattedLogs);
       }
-      console.log('dai transactions found:', formattedLogs.length)
+      console.log('Dai transactions found:', formattedLogs.length)
       return daiLogs;
 
     } catch (error) {

@@ -14,7 +14,8 @@ export class DatabaseService {
         amount: log.value,
         decimals: tokenDecimals,
         tx_hash: log.transactionHash,
-        timestamp: new Date().toUTCString(),
+        date: new Date().toUTCString(),
+        timestamp: new Date().getTime(),
       };
       return formattedLog;
     }).map((log) => {
