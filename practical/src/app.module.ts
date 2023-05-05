@@ -10,6 +10,7 @@ import { DaiModule } from './modules/dai/dai.module';
 import { DaiService } from './modules/dai/dai.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ThrottleModule } from './modules/throttle/throttle.module';
+import { RequestsModule } from './modules/requests/requests.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ThrottleModule } from './modules/throttle/throttle.module';
     DaiModule,
     AuthModule,
     ThrottleModule,
+    RequestsModule,
   ],
   controllers: [AppController],
   providers: [

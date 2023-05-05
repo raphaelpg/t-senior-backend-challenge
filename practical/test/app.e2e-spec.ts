@@ -11,7 +11,8 @@ import { mockApiKeys } from '../src/utils/mockData';
 // - GET /transactions/last/:page/:limit
 // - GET /transactions/address/:address
 // - GET /transactions/balance/:address
-// Also testing authentication with api key and throttling
+// Also testing authentication with api key (mockapi keys are stored inside src/utils/mockData.ts)
+// and throttling
 // The DB should contain at least 100 transactions to pass all tests
 
 // DB insertions are not tested here, but could be tested using mock data
