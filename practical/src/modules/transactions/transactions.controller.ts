@@ -31,6 +31,7 @@ export class TransactionsController {
 
   // Get all transactions by address
   @Get('address/:address')
+  @UseGuards(AuthGuard('api-key'))
   getAllTransactionsByAddress(@Param('address') address: string): Promise<Transaction[]> {
     this.logger.log('getAllTransactionsByAddress');
     return this.transactionService.findAllByAddress(address);
@@ -38,6 +39,7 @@ export class TransactionsController {
 
   // Get address balance
   @Get('balance/:address')
+  @UseGuards(AuthGuard('api-key'))
   getAddressBalance(@Param('address') address: string): Promise<string> {
     this.logger.log('getAddressBalance');
     return this.transactionService.findTotalBalanceByAddress(address);
