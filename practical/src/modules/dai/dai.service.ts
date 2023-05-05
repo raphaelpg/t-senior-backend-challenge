@@ -3,12 +3,12 @@ import { DatabaseService } from '../database/database.service';
 import { TransactionsService } from '../transactions/transactions.services';
 import { EthereumService } from '../ethereum/ethereum.service';
 import { DAI_CONTRACT_ADDRESS } from '../../utils/constants';
+import { formatLogs } from '../../utils/formatting';
 import daiAbi from '../../contracts/abi/dai.json';
 
 @Injectable()
 export class DaiService {
   constructor(
-    private readonly databaseService: DatabaseService,
     private readonly transactionsService: TransactionsService,
     private readonly ethereumService: EthereumService
   ) {}
@@ -23,7 +23,7 @@ export class DaiService {
       const transferLogs = this.ethereumService.filterLogsByEvent(logs, daiAbi, "Transfer");
       const daiLogs = this.ethereumService.filterLogsByAddress(transferLogs, DAI_CONTRACT_ADDRESS);
       const parsedLogs = this.ethereumService.parseLogsData(daiLogs, daiAbi);
-      const formattedLogs = this.databaseService.formatLogs(parsedLogs, "DAI", 18);
+      const formattedLogs = formatLogs(parsedLogs, "DAI", 18);
       if (formattedLogs.length > 0) {
         this.transactionsService.createMany(formattedLogs);
       }
