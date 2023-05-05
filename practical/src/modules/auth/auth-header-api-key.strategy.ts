@@ -4,7 +4,7 @@ import Strategy from 'passport-headerapikey';
 import { mockApiKeys } from '../../utils/mockData';
 
 @Injectable()
-export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'api-key') {
+export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'apiKey') {
     constructor() {
         super({ header: 'apiKey', prefix: '' },
         true,

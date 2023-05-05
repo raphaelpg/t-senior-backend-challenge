@@ -11,6 +11,7 @@ import { DaiService } from './modules/dai/dai.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ThrottleModule } from './modules/throttle/throttle.module';
 import { RequestsModule } from './modules/requests/requests.module';
+import { RequestsService } from './modules/requests/requests.service';
 
 @Module({
   imports: [

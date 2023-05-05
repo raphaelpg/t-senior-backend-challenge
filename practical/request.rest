@@ -1,4 +1,4 @@
-@apiKey = "FakeApiKey1"
+@apiKey = FakeApiKey1
 
 GET http://localhost:3000/
 
@@ -6,4 +6,34 @@ GET http://localhost:3000/
 
 GET http://localhost:3000/transactions HTTP/1.1
 content-type: application/json
-api-key: {{apiKey}}
+apiKey: {{apiKey}}
+
+###
+
+GET http://localhost:3000/transactions/last/1 HTTP/1.1
+content-type: application/json
+apiKey: invalid
+
+###
+
+GET http://localhost:3000/transactions/last/1 HTTP/1.1
+content-type: application/json
+apiKey: {{apiKey}}
+
+###
+
+GET http://localhost:3000/transactions/last/1/10 HTTP/1.1
+content-type: application/json
+apiKey: {{apiKey}}
+
+###
+
+GET http://localhost:3000/transactions/address/0x0000000000000000000000000000000000000000 HTTP/1.1
+content-type: application/json
+apiKey: {{apiKey}}
+
+###
+
+GET http://localhost:3000/transactions/balance/0x0000000000000000000000000000000000000000 HTTP/1.1
+content-type: application/json
+apiKey: {{apiKey}}
