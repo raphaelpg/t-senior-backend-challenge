@@ -1,0 +1,9 @@
+@apiKey = "FakeApiKey1"
+
+GET http://localhost:3000/
+
+###
+
+GET http://localhost:3000/transactions HTTP/1.1
+content-type: application/json
+api-key: {{apiKey}}
