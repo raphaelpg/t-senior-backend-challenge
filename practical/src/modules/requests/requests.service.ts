@@ -26,4 +26,11 @@ export class RequestsService {
   remove = async (id: number): Promise<void> => {
     await this.usersRepository.delete(id);
   }
+
+  // get sum of requests per specific time period
+  getSumRequests = async (startDate: Date, endDate: Date): Promise<number> => {
+    const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp BETWEEN '${startDate}' AND '${endDate}'`;
+    const result = await this.dataSource.query(query);
+    return result[0].count;
+  }
 }

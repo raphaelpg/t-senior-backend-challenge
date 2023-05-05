@@ -37,3 +37,8 @@ apiKey: {{apiKey}}
 GET http://localhost:3000/transactions/balance/0x0000000000000000000000000000000000000000 HTTP/1.1
 content-type: application/json
 apiKey: {{apiKey}}
+
+###
+
+GET http://localhost:3000/requests/sum/1683316296384/1683318793957 HTTP/1.1
+content-type: application/json
