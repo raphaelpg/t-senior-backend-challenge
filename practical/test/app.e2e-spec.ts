@@ -30,11 +30,12 @@ describe('AppController (e2e)', () => {
   });
 
   // Test root path
-  it('should respond basic text (GET)', () => {
-    return request(app.getHttpServer())
+  it('should respond basic text (GET)', (done) => {
+    request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect('Hello World!')
+      .end(done)
   });
 
   // Test /transactions/last/:page path to retrieve last 100 txs
@@ -114,10 +115,10 @@ describe('AppController (e2e)', () => {
   });
 
   // Test server throttling, limited to 10 requests per minute
-  it('should throttle requests (GET)', () => {
+  it('should reject if too many requests (GET)', () => {
     const limit = 10;
+    
     for (let i = 0; i <= limit+1; i++) {
-      console.log(`Request ${i} of ${limit+1}`)
       if (i == limit+1) {
         request(app.getHttpServer())
           .get('/transactions/')
@@ -130,4 +131,7 @@ describe('AppController (e2e)', () => {
     }
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
 });
