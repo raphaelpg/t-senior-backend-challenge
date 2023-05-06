@@ -61,11 +61,14 @@ to perform the basic tests contained in the file 'app.e2e-spec.ts' located in th
   - transactions: define the transactions sql table, the queries and endpoints
 
 ## Choices:
+I started to look at the challenge on Monday 01/05/23 and finished it on Saturday 06/05/23, and I have used Git Copilot VS code extension.
+I believe the application does everything asked, but two bonus SQL queries are missing.
+The code is simple but feel free to reach me for any clarification or choice I've made.
+
 I have more experience using Nodejs and Express, but as I was already learning to use Nestjs, I decided to use it for this challenge so I can improve my skills at the same time. This is my second time using Nestjs and even if I was not so kean on using it at the beginning, mainly because it's oop and I prefer functionnal programming, I have a better understanding of it now. In my opinion the main interest resides that it eases the deployment of new features, especially new endpoints, in an isolated way.
 
 I have chosen to use a MySQL database because I saw that it was in the Tessera job description, so it would be more practical for testers and also for me to start using it too. I used PostGres in my previous projects but it's very similar. I also know SQL but I couldn't create two of the requested queries in the bonus.
 
-I started to look at the challenge on Monday 01/05/23 and finished it on Saturday 06/05/23, and I have used Git Copilot VS code extension.
 If I have to improve the code now, I would try to create my own auth api key module instead of using the passport library.
 I would also improve the tests, mainly with mockdata and in memory storage so the tester won't need to fill it's db with 100 lines.
 I would include the requests params inside the requests table. And improve the logger module.
