@@ -5,13 +5,11 @@ import { DatabaseModule } from './modules/database/database.module';
 import { TransactionsModule } from './modules/transactions/transactions.module';
 import { EthereumModule } from './modules/ethereum/ethereum.module';
 import { EthereumService } from './modules/ethereum/ethereum.service';
-import { DatabaseService } from './modules/database/database.service';
 import { DaiModule } from './modules/dai/dai.module';
 import { DaiService } from './modules/dai/dai.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ThrottleModule } from './modules/throttle/throttle.module';
 import { RequestsModule } from './modules/requests/requests.module';
-import { RequestsService } from './modules/requests/requests.service';
 
 @Module({
   imports: [
@@ -27,7 +25,6 @@ import { RequestsService } from './modules/requests/requests.service';
   providers: [
     AppService, 
     EthereumService, 
-    DatabaseService, 
     DaiService,
   ],
 })

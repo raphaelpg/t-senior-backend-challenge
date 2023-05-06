@@ -2,7 +2,6 @@ import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransactionsModule } from '../transactions/transactions.module';
-import { DatabaseService } from './database.service';
 
 @Module({
   imports: [
@@ -18,10 +17,6 @@ import { DatabaseService } from './database.service';
     }),
     TransactionsModule,
   ],
-  providers: [
-    DatabaseService,
-  ],
-  exports: [DatabaseService],
 })
 export class DatabaseModule {
   constructor() {}

@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
 import { TransactionsService } from '../transactions/transactions.services';
 import { EthereumService } from '../ethereum/ethereum.service';
 import { DAI_CONTRACT_ADDRESS } from '../../utils/constants';
