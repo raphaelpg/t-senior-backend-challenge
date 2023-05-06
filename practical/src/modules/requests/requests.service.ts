@@ -28,13 +28,12 @@ export class RequestsService {
   }
 
   // get average number of request per specific timeframe
-  getAverageRequests = async (timeframe: string): Promise<number> => {
+  // getAverageRequests = async (timeframe: string): Promise<number> => {
     // const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp > NOW() - INTERVAL '${timeframe}'`;
     // const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp > NOW() - INTERVAL 1 HOUR`;
-    const query = `SELECT LEFT(TIMESTAMP, 16) AS mtimestamp, AVG(COUNT(*)) count FROM requests WHERE timestamp > NOW() - INTERVAL 15 MINUTE`;
-    const result = await this.dataSource.query(query);
-    return result[0].count;
-  }
+    // const result = await this.dataSource.query(query);
+    // return result[0].count;
+  // }
 
   // get sum of requests per specific time period
   getSumRequests = async (startDate: Date, endDate: Date): Promise<number> => {
@@ -43,11 +42,17 @@ export class RequestsService {
     return result[0].count;
   }
 
+  // get highest usage 3 hour period for a specific api key
+  // getHighestUsagePeriod = async (apiKey: string): Promise<string> => {
+    // const query = `SELECT LEFT(TIMESTAMP, 13) AS mtimestamp, COUNT(*) AS count FROM requests WHERE api_key = '${apiKey}' GROUP BY mtimestamp ORDER BY count DESC LIMIT 1`;
+    // const result = await this.dataSource.query(query);
+    // return result[0].mtimestamp;
+  // }
+
   // get most used api key by number of requests
   getMostUsedApiKey = async (): Promise<string> => {
     const query = `SELECT api_key, COUNT(*) AS count FROM requests GROUP BY api_key ORDER BY count DESC LIMIT 1`;
     const result = await this.dataSource.query(query);
     return result[0].api_key;
-  }
-    
+  } 
 }

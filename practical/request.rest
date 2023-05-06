@@ -39,6 +39,7 @@ content-type: application/json
 apiKey: {{apiKey}}
 
 ###
+// NOT IMPLEMENTED
 // get average of requests per timeframe
 GET http://localhost:3000/requests/average/15  HTTP/1.1
 content-type: application/json
@@ -46,6 +47,12 @@ content-type: application/json
 ###
 // get sum of requests per time period
 GET http://localhost:3000/requests/sum/1683316296384/1683318793957 HTTP/1.1
+content-type: application/json
+
+###
+// NOT IMPLEMENTED
+// get highest usage 3 hour period for a specific api key
+GET http://localhost:3000/requests/highest/FakeApiKey1 HTTP/1.1
 content-type: application/json
 
 ###
