@@ -11,9 +11,9 @@
 
 - Coded in TS
 - Stack used:
-<p align="center">
-NodeJS<br>
-[Nest](https://docs.nestjs.com/) v9.0.0 framework<br>
+<p>
+Node.js<br>
+ <a href="https://docs.nestjs.com/" target="_blank">Nest</a> v9.0.0 framework<br>
 [MySQL](https://dev.mysql.com/) v8.0 database<br>
 [TypeORM](https://typeorm.io/) v0.3.15 as ORM<br>
 [Ethers](https://docs.ethers.org/v5/) v5.6.4 for web3 utilities<br>
