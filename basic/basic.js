@@ -31,12 +31,14 @@ const setAdminRole = async (userName) => {
         const database = await connectToDatabase();
         // assuming that if database connection fails, connectToDatabase() will throw an error and will be catched in the catch block
         
+        // checking user exists
         const user = await getUser(database, userName);
         if (!user || !user?.id) {
             throw new Error("User not found");
         }
 
         // Assuming that user role field is accesible as an object property
+        // checking if user is already an admin
         if (user && user?.role === "ADMIN") {
             throw new Error("User is already an admin");
         }
