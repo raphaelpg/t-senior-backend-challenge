@@ -61,6 +61,7 @@ to perform the basic tests contained in the file 'app.e2e-spec.ts' located in th
   - transactions: define the transactions sql table, the queries and endpoints
 
 ## Choices:
+I chose this challenge because I want to improve my backend skills and my last position was more frontend oriented. 
 I started to look at the challenge on Monday 01/05/23 and finished it on Saturday 06/05/23, and I have used Git Copilot VS code extension.
 I believe the application does everything asked, but two bonus SQL queries are missing.
 The code is simple but feel free to reach me for any clarification or choice I've made.
