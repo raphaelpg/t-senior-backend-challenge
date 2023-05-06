@@ -10,7 +10,7 @@
 
 # 2/ Practical
 
-## A REST API server created with Nestjs
+## A REST API server created with Nestjs that scans Ethereum mainnet blockchain for DAI transfers 
 - Coded in TS
 ## Stack used:
   - [Nest](https://docs.nestjs.com/) v9.0.0 framework
@@ -32,34 +32,30 @@ npm install
 ```
   - Copy the .sampleEnv file and rename it as .env, then configure the database params inside the .env file
   - Check or modify the server config params inside the config.ts file located in 'src/config/config.ts' 
-  - Run 
+  - Start the server: run 
 ```
 npm start
 ``` 
 to start the server, it will create a 'transactions' table inside the database and start filling it on a block basis with the detected DAI transfers
-  - Run 
+  - Execute tests: run 
 ```
 npm run test:e2e
 ``` 
 to perform the basic tests contained in the file 'app.e2e-spec.ts' located in the test folder (some tests will require that the transactions table contains at least 100 rows)
 
-- Structure of the server folder:
-<p>"src" folder containing the main app and features modules<br>
-<p>"test" folder containing basics tests => npm run test:e2e 
+## Structure of the server code:
+- The config folder: contains the config file
+- The contracts folder: contains the DAI contract abi
+- The modules folder: contains the features modules
+- The utils folder: contains formatting functions and mock api keys
+- Main app files
 
-- The server contains does the following:
-<p>
-1/ Stores the latest DAI transactions into a DB (MySQL) on a continuous basis (block per block):<br>
-<p>User should provide MySQL database params inside a .env file (see .sampleEnv file included in the root folder of the project)<br>
-<p>The server will create a "transactions" table at start
-<p> and execute a script that fetch <br>
-Have endpoints that returns the following data (from the DB):<br>
-- Last 100 DAI transactions (add pagination, if possible)<br>
-- Transactions by sender or recipient<br>
-- Address' DAI balance (sender or recipient) from indexed transactions / aggregated data only<br>
-Limits the API usage with API key<br>
-Logs API request<br>
-Include a throttler<br>
-Execute basics tests<br>
-Store the requests into a sql "requests" table<br> 
-</p>
+- Each feature module contains a main feature.module.ts where we import and export the necessary classes. Then it can contain optional files like feature.service.ts, feature.controller.ts etc.
+- The modules:
+  - auth: handles the api key requirement for some api endpoints
+  - dai: contains the script used to subscribe to new block created event, scan for any DAI transaction and store them inside the database
+  - database: used to connect to MySQL database
+  - ethereum: handles the web3 functions like new block subscriber
+  - requests: define the request sql table, the queries and endpoints (basically saving each request API KEY into the db)
+  - throttle: used to globally apply throttling to the server requests, params can be adjusted inside the config.ts file
+  - transactions: define the transactions sql table, the queris and endpoints
