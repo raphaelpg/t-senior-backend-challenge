@@ -73,5 +73,5 @@ I already knew how to get this type of onchain data, so I mainly learn about the
 
 ## Contact:
 I'm Raphael Pinto, I'm a developper since 2019 and I'm currently based in Madrid, Spain.
-- [LinkeInd](https://www.linkedin.com/in/raphael-pinto-gregorio-660b2579/)
+- [LinkedIn](https://www.linkedin.com/in/raphael-pinto-gregorio-660b2579/)
 - My email: raphael_pinto@outlook.com
