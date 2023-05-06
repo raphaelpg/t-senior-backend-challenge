@@ -1,4 +1,4 @@
-# t-senior-backend-challenge
+# t-senior-backend-challenge (private repository)
 
 ### Senior Backend Coding Challenge for Tessera, containing two repositories:
 
@@ -37,7 +37,7 @@ npm install
 npm start
 ``` 
 to start the server, it will create a 'transactions' table inside the database and start filling it on a block basis with the detected DAI transfers
-  - Execute tests: run 
+  - Testing: run 
 ```
 npm run test:e2e
 ``` 
@@ -46,7 +46,7 @@ to perform the basic tests contained in the file 'app.e2e-spec.ts' located in th
 ## Structure of the server code:
 - The config folder: contains the config file
 - The contracts folder: contains the DAI contract abi
-- The modules folder: contains the features modules
+- The modules folder: contains the features modules (more details below)
 - The utils folder: contains formatting functions and mock api keys
 - Main app files
 
@@ -59,3 +59,20 @@ to perform the basic tests contained in the file 'app.e2e-spec.ts' located in th
   - requests: define the request sql table, the queries and endpoints (basically saving each request API KEY into the db)
   - throttle: used to globally apply throttling to the server requests, params can be adjusted inside the config.ts file
   - transactions: define the transactions sql table, the queris and endpoints
+
+## Choices:
+I have more experience using Nodejs and Express, but as I was already learning to use Nestjs, I decided to use it for this challenge so I can improve my skills at the same time. This is my second time using Nestjs and even if I was not so kean on using it at the beginning, mainly because it's oop and I prefer functionnal programming, I have a better understanding of it now. In my opinion the main interest resides that it ease the deployment of new features, especially new endpoints, and they are isolated.
+
+I have chosen to use a MySQL database because I saw that it was in the Tessera job description, so it would be more practical for testers and also for me to start using it too. I used PostGres in my previous projects but it's very similar. I also know SQL but I couldn't create two of the requested queries in the bonus.
+
+
+
+I started to look at the challenge on Monday 01/05/23 and finished it on Saturday 06/05/23, and I have used Git Copilot VS code extension.
+If I have to improve the code now, I would try to create my own auth api key module instead of using the passport library.
+I would also improve the tests, mainly with mockdata and in memory storage so the tester won't need to fill it's db with 100 lines.
+I would include the requests params inside the requests table.
+
+## Contact:
+I'm Raphael Pinto, I'm a developper since 2019 and I'm currently based in Madrid, Spain.
+[LinkeInd](https://www.linkedin.com/in/raphael-pinto-gregorio-660b2579/)
+My email: raphael_pinto@outlook.com
