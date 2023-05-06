@@ -69,7 +69,7 @@ I started to look at the challenge on Monday 01/05/23 and finished it on Saturda
 If I have to improve the code now, I would try to create my own auth api key module instead of using the passport library.
 I would also improve the tests, mainly with mockdata and in memory storage so the tester won't need to fill it's db with 100 lines.
 I would include the requests params inside the requests table. And improve the logger module.
-I already knew how to get this type of onchain data, so I mainly learn about the Nest part, but the challenge is nice.
+I already knew how to get this type of onchain data, so I mainly learn about the Nest part, but the challenge is useful and nice.
 
 ## Contact:
 I'm Raphael Pinto, I'm a developper since 2019 and I'm currently based in Madrid, Spain.
