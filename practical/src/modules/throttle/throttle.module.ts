@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { config } from '../../config/config';
 
 @Module({
   imports: [
     ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
+      ttl: config.throttle.ttl,
+      limit: config.throttle.limit,
     }),
   ],
   providers: [

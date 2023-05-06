@@ -2,11 +2,12 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import Strategy from 'passport-headerapikey';
 import { mockApiKeys } from '../../utils/mockData';
+import { config } from '../../config/config';
 
 @Injectable()
-export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'apiKey') {
+export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, config.auth.apiKeyName) {
     constructor() {
-        super({ header: 'apiKey', prefix: '' },
+        super({ header: config.auth.apiKeyName, prefix: '' },
         true,
         async (apiKey, done) => {
             return this.validate(apiKey, done);

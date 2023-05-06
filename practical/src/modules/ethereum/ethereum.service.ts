@@ -1,13 +1,13 @@
 import { ethers } from 'ethers';
 import { Injectable, Logger } from '@nestjs/common';
-import { WEB3_PROVIDER_URL } from '../../utils/constants';
+import { config } from '../../config/config';
 
 @Injectable()
 export class EthereumService {
   constructor() {}
 
   private readonly logger = new Logger(EthereumService.name)
-  private provider = new ethers.providers.JsonRpcProvider(WEB3_PROVIDER_URL);
+  private provider = new ethers.providers.JsonRpcProvider(config.web3.providerUrl);
 
   blockSubscriber = async (callback: any[]) => {
     this.provider.on('block', (blockNumber) => {

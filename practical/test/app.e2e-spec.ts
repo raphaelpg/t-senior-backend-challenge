@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from './../src/app.module';
 import { mockApiKeys } from '../src/utils/mockData';
+import { config } from '../src/config/config';
 
 // Basic tests as required in the practical challenge
 // Below tests are testing following endpoints:
@@ -118,7 +119,7 @@ describe('AppController (e2e)', () => {
 
   // Test server throttling, limited to 10 requests per minute
   it('should reject if too many requests (GET)', () => {
-    const limit = 10;
+    const limit = config.throttle.limit;
     
     for (let i = 0; i <= limit+1; i++) {
       if (i == limit+1) {

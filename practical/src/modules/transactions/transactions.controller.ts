@@ -4,6 +4,7 @@ import { Transaction } from './transactions.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { RequestsService } from '../requests/requests.service';
 import { formatRequests } from '../../utils/formatting';
+import { config } from '../../config/config';
 
 @Controller('transactions')
 export class TransactionsController {
@@ -15,7 +16,7 @@ export class TransactionsController {
 
   @Get()
   getHello(
-    @Headers('apiKey') apiKey: string
+    @Headers(config.auth.apiKeyName) apiKey: string
   ): string {
     const requestApiKey = apiKey || 'no api key';
     this.logger.log('transactions/, apiKey: ' + requestApiKey);
@@ -23,23 +24,23 @@ export class TransactionsController {
     return 'Get Transactions';
   }
 
-  // Get last 100 transactions
+  // Get last 100 transactions (limit value set in config.ts)
   @Get('last/:page')
-  @UseGuards(AuthGuard('apiKey'))
+  @UseGuards(AuthGuard(config.auth.apiKeyName))
   getLastTransactions(
-    @Headers('apiKey') apiKey: string,
+    @Headers(config.auth.apiKeyName) apiKey: string,
     @Param('page') page: number
   ): Promise<Transaction[]> {
     const requestApiKey = apiKey || 'no api key';
     this.logger.log('transactions/last/:page, apiKey: ' + requestApiKey);
     this.requestsService.save(formatRequests('transactions/last/:page', requestApiKey));
-    return this.transactionService.findLastWithPagination(page, 100);
+    return this.transactionService.findLastWithPagination(page, config.transactions.defaultLimit);
   }
 
-  // Get last 100 transactions with pagination
+  // Get last transactions with pagination (dynamic limit value)
   @Get('last/:page/:limit')
   getLastTransactionsWithPagination(
-    @Headers('apiKey') apiKey: string, 
+    @Headers(config.auth.apiKeyName) apiKey: string, 
     @Param('page') page: number, 
     @Param('limit') limit: number
   ): Promise<Transaction[]> {
@@ -51,9 +52,9 @@ export class TransactionsController {
 
   // Get all transactions by address
   @Get('address/:address')
-  @UseGuards(AuthGuard('apiKey'))
+  @UseGuards(AuthGuard(config.auth.apiKeyName))
   getAllTransactionsByAddress(
-    @Headers('apiKey') apiKey: string, 
+    @Headers(config.auth.apiKeyName) apiKey: string, 
     @Param('address') address: string
   ): Promise<Transaction[]> {
     const requestApiKey = apiKey || 'no api key';
@@ -64,9 +65,9 @@ export class TransactionsController {
 
   // Get address balance
   @Get('balance/:address')
-  @UseGuards(AuthGuard('apiKey'))
+  @UseGuards(AuthGuard(config.auth.apiKeyName))
   getAddressBalance(
-    @Headers('apiKey') apiKey: string, 
+    @Headers(config.auth.apiKeyName) apiKey: string, 
     @Param('address') address: string
   ): Promise<string> {
     const requestApiKey = apiKey || 'no api key';

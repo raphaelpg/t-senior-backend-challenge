@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { TransactionsService } from '../transactions/transactions.services';
 import { EthereumService } from '../ethereum/ethereum.service';
-import { DAI_CONTRACT_ADDRESS } from '../../utils/constants';
 import { formatLogs } from '../../utils/formatting';
+import { config } from '../../config/config';
 import daiAbi from '../../contracts/abi/dai.json';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class DaiService {
     try {
       const logs = await this.ethereumService.getBlockLogs(usedBlock);
       const transferLogs = this.ethereumService.filterLogsByEvent(logs, daiAbi, "Transfer");
-      const daiLogs = this.ethereumService.filterLogsByAddress(transferLogs, DAI_CONTRACT_ADDRESS);
+      const daiLogs = this.ethereumService.filterLogsByAddress(transferLogs, config.web3.mainnetDaiContractAddress);
       const parsedLogs = this.ethereumService.parseLogsData(daiLogs, daiAbi);
       const formattedLogs = formatLogs(parsedLogs, "DAI", 18);
       if (formattedLogs.length > 0) {
