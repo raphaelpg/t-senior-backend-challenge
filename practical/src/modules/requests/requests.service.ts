@@ -27,10 +27,27 @@ export class RequestsService {
     await this.usersRepository.delete(id);
   }
 
+  // get average number of request per specific timeframe
+  getAverageRequests = async (timeframe: string): Promise<number> => {
+    // const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp > NOW() - INTERVAL '${timeframe}'`;
+    // const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp > NOW() - INTERVAL 1 HOUR`;
+    const query = `SELECT LEFT(TIMESTAMP, 16) AS mtimestamp, AVG(COUNT(*)) count FROM requests WHERE timestamp > NOW() - INTERVAL 15 MINUTE`;
+    const result = await this.dataSource.query(query);
+    return result[0].count;
+  }
+
   // get sum of requests per specific time period
   getSumRequests = async (startDate: Date, endDate: Date): Promise<number> => {
     const query = `SELECT COUNT(*) AS count FROM requests WHERE timestamp BETWEEN '${startDate}' AND '${endDate}'`;
     const result = await this.dataSource.query(query);
     return result[0].count;
   }
+
+  // get most used api key by number of requests
+  getMostUsedApiKey = async (): Promise<string> => {
+    const query = `SELECT api_key, COUNT(*) AS count FROM requests GROUP BY api_key ORDER BY count DESC LIMIT 1`;
+    const result = await this.dataSource.query(query);
+    return result[0].api_key;
+  }
+    
 }

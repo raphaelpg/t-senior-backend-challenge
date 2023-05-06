@@ -20,6 +20,7 @@ import { mockApiKeys } from '../src/utils/mockData';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
+  const apiKey = mockApiKeys[0];
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -54,14 +55,14 @@ describe('AppController (e2e)', () => {
   it('should authorize request with api key (GET)', () => {
     return request(app.getHttpServer())
       .get('/transactions/last/1')
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
   });
   // transactions table should have 100 txs minimum
   it('should retrieve 100 txs by default (GET)', () => {
     return request(app.getHttpServer())
       .get('/transactions/last/1')
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
       .expect(res => {
         expect(res.body).toHaveLength(100);
@@ -86,13 +87,13 @@ describe('AppController (e2e)', () => {
 
     return request(app.getHttpServer())
       .get(`/transactions/address/${firstTx['sender']}`)
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
   });
   it('should respond even if address not found (GET)', () => {
     return request(app.getHttpServer())
       .get('/transactions/address/invalid')
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
   });
 
@@ -100,18 +101,18 @@ describe('AppController (e2e)', () => {
   it('should retrieve address balance (GET)', () => {
     const firstTx = request(app.getHttpServer())
       .get('/transactions/last/1/1')
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
 
     return request(app.getHttpServer())
       .get(`/transactions/balance/${firstTx['sender']}`)
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
   });
   it('should respond even if address not found (GET)', () => {
     return request(app.getHttpServer())
       .get('/transactions/balance/invalid')
-      .set('apiKey', mockApiKeys[0])
+      .set('apiKey', apiKey)
       .expect(200)
   });
 
@@ -132,7 +133,7 @@ describe('AppController (e2e)', () => {
     }
   });
 
-  afterEach(async () => {
-    await app.close();
-  });
+  // afterEach(async () => {
+  //   await app.close();
+  // });
 });

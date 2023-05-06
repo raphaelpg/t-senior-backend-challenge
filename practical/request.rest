@@ -39,6 +39,16 @@ content-type: application/json
 apiKey: {{apiKey}}
 
 ###
+// get average of requests per timeframe
+GET http://localhost:3000/requests/average/15  HTTP/1.1
+content-type: application/json
 
+###
+// get sum of requests per time period
 GET http://localhost:3000/requests/sum/1683316296384/1683318793957 HTTP/1.1
+content-type: application/json
+
+###
+// get most used api key by number of requests
+GET http://localhost:3000/requests/most HTTP/1.1
 content-type: application/json
