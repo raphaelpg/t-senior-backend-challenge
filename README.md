@@ -10,29 +10,38 @@
 
 # 2/ Practical
 
-- A REST API server created with Nestjs
+## A REST API server created with Nestjs
 - Coded in TS
-- Stack used:
+## Stack used:
   - [Nest](https://docs.nestjs.com/) v9.0.0 framework
   - [MySQL](https://dev.mysql.com/) v8.0 database
- (https://typeorm.io/)TypeORM v0.3.15 as ORM
- (https://docs.ethers.org/v5/)Ethers v5.6.4 for web3 utilities
- (https://www.passportjs.org/)Passport v0.6.0 for authentication
- (https://jestjs.io/docs/getting-started)Jest v29.5.0 for tests
- (https://marketplace.visualstudio.com/items?itemName=humao.rest-client)Rest v0.25.1 for quick api testing
-
-<p>
-Node.js<br>
- <a href="https://docs.nestjs.com/" target="_blank">Nest</a> v9.0.0 framework<br>
- <a href="https://dev.mysql.com/" target="_blank">MySQL</a> v8.0 database<br>
- <a href="https://typeorm.io/" target="_blank">TypeORM</a> v0.3.15 as ORM<br>
- <a href="https://docs.ethers.org/v5/" target="_blank">Ethers</a> v5.6.4 for web3 utilities<br>
- <a href="https://www.passportjs.org/" target="_blank">Passport</a> v0.6.0 for authentication<br>
- <a href="https://jestjs.io/docs/getting-started" target="_blank">Jest</a> v29.5.0 for tests<br>
- <a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client" target="_blank">Rest</a> v0.25.1 for quick api testing<br>
-</p>
+  - [TypeORM](https://typeorm.io/) v0.3.15 as ORM
+  - [Ethers](https://docs.ethers.org/v5/) v5.6.4 for web3 utilities
+  - [Passport](https://www.passportjs.org/) v0.6.0 for authentication
+  - [Jest](https://jestjs.io/docs/getting-started) v29.5.0 for tests
+  - [Rest](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) v0.25.1 for quick api testing
 
 - NestJS integrates libraries such as: Express, Jest, Supertest, Prettier, EsLint. They are already integrated when initiating a new nest project.
+
+## How to start ?
+  - The server is configured to connect to a MySQL database, thus it needs to be installed in the local environment
+  - The server is configured to use an Alchemy provider
+  - Install all the dependencies with 
+```
+npm install
+```
+  - Copy the .sampleEnv file and rename it as .env, then configure the database params inside the .env file
+  - Check or modify the server config params inside the config.ts file located in 'src/config/config.ts' 
+  - Run 
+```
+npm start
+``` 
+to start the server, it will create a 'transactions' table inside the database and start filling it on a block basis with the detected DAI transfers
+  - Run 
+```
+npm run test:e2e
+``` 
+to perform the basic tests contained in the file 'app.e2e-spec.ts' located in the test folder (some tests will require that the transactions table contains at least 100 rows)
 
 - Structure of the server folder:
 <p>"src" folder containing the main app and features modules<br>
